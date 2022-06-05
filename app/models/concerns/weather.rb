@@ -4,14 +4,11 @@ module Weather
     
     included do
 
-        def correct_city_url
-
-            self.city_name.gsub(' ', '%20')
-          end
+       
          
          def take_location_key
             resourse_url = "http://dataservice.accuweather.com/locations/v1/cities/search"
-            query = "#{resourse_url}?apikey=#{api_key}&q=#{correct_city_url}"
+            query = "#{resourse_url}?apikey=#{api_key}&q=#{self.city_name}"
             json = JSON.parse(HTTP.get(query))
             json[0]["Key"]
          end

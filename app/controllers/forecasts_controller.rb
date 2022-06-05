@@ -1,6 +1,6 @@
 class ForecastsController < ApplicationController
    
-  before_action :set_location
+  before_action :set_location, except: :health
        
     
   def current
@@ -9,23 +9,33 @@ class ForecastsController < ApplicationController
   end
 
   def historical
-    @historical_24 = Forecast.where(location_id: @location.id).temp_24
+    @historical_24 = @location.forecasts.temp_24
     
   end
 
   def max_temp
-    @max = Forecast.where(location_id: @location.id).temp_24.maximum(:temp)
+    @max = @location.forecasts.temp_24.maximum(:temp)
     render plain: @max
   end
 
   def min_temp
-    @min = Forecast.where(location_id: @location.id).temp_24.minimum(:temp)
+    @min = @location.forecasts.temp_24.minimum(:temp)
     render plain: @min
   end
 
   def average_temp
-    @average = Forecast.where(location_id: @location.id).temp_24.average(:temp).round
+    @average = @location.forecasts.temp_24.average(:temp).round
     render plain: @average
+  end
+
+  def by_time
+    
+    up_range = Time.at(params[:timestamp].to_i + 1800).to_datetime
+    down_range = Time.at(params[:timestamp].to_i - 1800).to_datetime
+    @temp_by_time = @location.forecasts.where(:date => down_range..up_range).order(date: :desc).first
+    @temp_by_time == nil ? not_found : (render plain: @temp_by_time.temp)
+    
+    
   end
 
   def update_forecast
@@ -40,6 +50,9 @@ class ForecastsController < ApplicationController
       render plain: "table is up to date"
      end
   end
+
+  
+  
 
   
   

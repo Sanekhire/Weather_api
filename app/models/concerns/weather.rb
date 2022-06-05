@@ -15,6 +15,17 @@ module Weather
             json = JSON.parse(HTTP.get(query))
             json[0]["Key"]
          end
+
+         def fill_table(location) 
+          
+            location.historical_data.each{|k, v| 
+            forecast = location.forecasts.build(set_param_forecast(k, v,))
+            forecast.save
+            }
+                 
+            render plain: "you fill the table, now you can take the historical data"
+          end
+          
         
           def current_temp
             resourse_url = "http://dataservice.accuweather.com/currentconditions/v1/"
@@ -22,7 +33,7 @@ module Weather
             json = JSON.parse(HTTP.get(query))
             current_temp = json[0]["Temperature"]["Metric"]["Value"]
             current_temp
-        end
+          end
         
         
         def historical_data
@@ -32,7 +43,7 @@ module Weather
             @historical_temp = {}
             json.each { 
               |hash, k, v| 
-              k = hash["LocalObservationDateTime"].to_datetime
+              k = DateTime.strptime(hash["LocalObservationDateTime"], "%Y-%m-%dT%H:%M:%S")
               v = hash["Temperature"]["Metric"]["Value"]
 
               @historical_temp.merge!(k => v)
@@ -41,12 +52,8 @@ module Weather
         end
 
        
-          private
-        
-          
-        
          def api_key
-            'GRoH87noZyoYA7fjRoe11fD9VQQLdcwf'
+            Rails.application.credentials.weather_api_key
          end
     
   end

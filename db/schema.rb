@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_04_080126) do
+ActiveRecord::Schema.define(version: 2022_06_06_061218) do
 
   create_table "forecasts", force: :cascade do |t|
     t.datetime "date"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2022_06_04_080126) do
     t.string "city_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "location_key"
   end
 
   add_foreign_key "forecasts", "locations"

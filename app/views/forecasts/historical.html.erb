@@ -1,0 +1,8 @@
+
+
+    <h3> The historical 24 data is:</h3>
+    <ul><% @historical_24.each do |hist| %>
+        <li> Date:<%= hist.date.to_time %> Temp: <%= hist.temp %> </li>
+      
+         <% end %>
+    </ul> 

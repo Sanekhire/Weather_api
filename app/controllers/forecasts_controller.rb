@@ -9,23 +9,25 @@ class ForecastsController < ApplicationController
   end
 
   def historical
-    @historical_24 = @location.forecasts.temp_24
-    
+    @temp = @location.forecasts.temp_24
+    temp_check
   end
 
   def max_temp
-    @max = @location.forecasts.temp_24.maximum(:temp)
-    render plain: @max
+    @temp = @location.forecasts.temp_24.maximum(:temp)
+    temp_check
+    
   end
 
   def min_temp
-    @min = @location.forecasts.temp_24.minimum(:temp)
-    render plain: @min
+    @temp = @location.forecasts.temp_24.minimum(:temp)
+    temp_check
   end
 
   def average_temp
-    @average = @location.forecasts.temp_24.average(:temp).round
-    render plain: @average
+    @temp = @location.forecasts.temp_24.average(:temp)
+    @temp.nil? ? warn_message : (render plain: @temp.round)
+    
   end
 
   def by_time
@@ -39,33 +41,29 @@ class ForecastsController < ApplicationController
   end
 
   def update_forecast
-     if Forecast.find_by(location_id: @location.id).blank?
-      fill_table(@location) 
+     if Forecast.find_by(location_id: @location.id).blank? 
+       @location.fill_table 
+       render plain: "you fill the table, now you can take the historical data"
+         
      else
-      first_date_forecast = Forecast.where(location_id: @location.id).order(date: :desc).first.date
-      @location.historical_data.each{|k, v|
-      forecast = @location.forecasts.build(forecast_param(k, v))  
-      forecast.save if ((k.to_i - first_date_forecast.to_i) / 3600.0).round(1) > 0.9
-      }
+      @location.update_table
       render plain: "table is up to date"
      end
   end
 
-  
-  
-
-  
+  def temp_check
+    @temp.nil? ?  warn_message : (render plain: @temp)
+  end
   
   private
+
+  def warn_message
+    render plain: "You have to update data first. Try  \"weather/update_forecast\" "
+  end
 
   def set_location
     @location = Location.find params[:id]
   end
-
-
-  def forecast_param(date, temp)
-    return{date: date, temp: temp}
-  end 
 
   
 end

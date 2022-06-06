@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
     def health
         render plain: "OK", :status => 200
         
-
     end
 
 end

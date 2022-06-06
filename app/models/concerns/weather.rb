@@ -4,29 +4,29 @@ module Weather
     
     included do
 
-       
-         
-         def take_location_key
-            resourse_url = "http://dataservice.accuweather.com/locations/v1/cities/search"
-            query = "#{resourse_url}?apikey=#{api_key}&q=#{self.city_name}"
-            json = JSON.parse(HTTP.get(query))
-            json[0]["Key"]
-         end
-
-         def fill_table(location) 
+         def fill_table
           
-            location.historical_data.each{|k, v| 
-            forecast = location.forecasts.build(set_param_forecast(k, v,))
+            self.historical_data.each{|k, v| 
+            forecast = self.forecasts.build(date: k, temp: v,)
             forecast.save
             }
                  
-            render plain: "you fill the table, now you can take the historical data"
+            
+          end
+
+          def update_table 
+            first_date_forecast = Forecast.where(location_id: self.id).order(date: :desc).first.date
+            self.historical_data.each{|k, v|
+            forecast = self.forecasts.build(date: k,temp: v) 
+            forecast.save if ((k.to_i - first_date_forecast.to_i) / 3600.0).round(1) > 0.9
+            }
+            
           end
           
         
           def current_temp
             resourse_url = "http://dataservice.accuweather.com/currentconditions/v1/"
-            query = "#{resourse_url}#{take_location_key}?apikey=#{api_key}"
+            query = "#{resourse_url}#{self.location_key}?apikey=#{api_key}"
             json = JSON.parse(HTTP.get(query))
             current_temp = json[0]["Temperature"]["Metric"]["Value"]
             current_temp
@@ -35,23 +35,24 @@ module Weather
         
         def historical_data
             resourse_url = "http://dataservice.accuweather.com/currentconditions/v1/"
-            query = "#{resourse_url}#{take_location_key}/historical/24?apikey=#{api_key}"
+            query = "#{resourse_url}#{self.location_key}/historical/24?apikey=#{api_key}"
             json = JSON.parse(HTTP.get(query))
-            @historical_temp = {}
+            historical_temp = {}
             json.each { 
               |hash, k, v| 
               k = DateTime.strptime(hash["LocalObservationDateTime"], "%Y-%m-%dT%H:%M:%S")
               v = hash["Temperature"]["Metric"]["Value"]
 
-              @historical_temp.merge!(k => v)
+              historical_temp.merge!(k => v)
               }
-              @historical_temp
+              historical_temp
         end
 
-       
-         def api_key
-            Rails.application.credentials.weather_api_key
-         end
+       private
+
+        def api_key
+          Rails.application.credentials.weather_api_key
+        end
     
   end
 end

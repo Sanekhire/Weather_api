@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::API
-
-include WarnMessage
-
-
+  include WarnMessage
 end

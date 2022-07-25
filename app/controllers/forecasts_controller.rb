@@ -3,73 +3,78 @@
 class ForecastsController < ApplicationController
   before_action :set_location, except: %i[health temp_check]
 
-  def current
-    forecast = @location.current_temp
-    render json: forecast
+  def current_temp
+    @current = query_with_choice('current')
+    temp_check(@current)
   end
 
   def historical
-    @historical24 = query_with_choice('historical').to_json
+    @historical24 = query_with_choice('historical')
     temp_check(@historical24)
   end
 
   def max_temp
-    @max = query_with_choice('max').to_json
+    @max = query_with_choice('max')
     temp_check(@max)
   end
 
   def min_temp
-    @min = query_with_choice('min').to_json
+    @min = query_with_choice('min')
     temp_check(@min)
   end
 
   def average_temp
-    @avg = query_with_choice('avg').to_json
+    @avg = query_with_choice('avg')
     temp_check(@avg)
   end
 
   def by_time
-    up_range = Time.zone.at(params[:timestamp].to_i + 1800).to_datetime
-    down_range = Time.zone.at(params[:timestamp].to_i - 1800).to_datetime
-    @temp_by_time = @location.forecasts.select(:date, :temp).where(date: down_range..up_range).order(date: :desc).first
-    @temp_by_time.nil? ? (raise ActiveRecord::RecordNotFound) : (@temp_by_time.to_json)
+    @temp_by_time = query_with_choice('by_time').as_json(except: :id)
+    @temp_by_time.blank? ? (raise ActiveRecord::RecordNotFound) : (render json: @temp_by_time)
   end
 
-  def update_forecast
-    if Forecast.find_by(location_id: @location.id).blank?
-      @location.fill_table
-    else
-      @location.update_table
-    end
-  end
-
-  def temp_check(temp)
-    raise(EmptyTempData, 'You have to update data first. Try  "weather/update_forecast" ') if temp.blank?
-    render json: temp
+  def health
+    render status: :ok
   end
 
   def query_with_choice(choice)
-    main_sql_query = "SELECT date, temp FROM forecasts WHERE location_id = #{@location.id} ORDER BY date DESC LIMIT 24"
+    historical24_query = 'SELECT date, temp FROM forecasts WHERE location_id = ? ORDER BY date DESC LIMIT 24'
 
-      case choice
-      when 'historical'
-        sql = main_sql_query
-      when 'max' 
-        sql = "SELECT MAX(temp) AS max FROM (#{main_sql_query}) AS forecast"
-      when 'min'
-        sql = "SELECT MIN(temp) AS min FROM (#{main_sql_query}) AS forecast"
-      when 'avg'
-        sql = "SELECT AVG(temp) AS avg FROM (#{main_sql_query}) AS forecast"
+    case choice
+    when 'historical'
+      sql = [historical24_query, @location.id]
+    when 'current'
+      sql = ['SELECT date, temp FROM forecasts WHERE location_id = ? ORDER BY date DESC LIMIT 1', @location.id]
+    when 'max'
+      sql = ["SELECT date, MAX(temp) AS max FROM (#{historical24_query}) AS forecast", @location.id]
+    when 'min'
+      sql = ["SELECT date, MIN(temp) AS min FROM (#{historical24_query}) AS forecast", @location.id]
+    when 'avg'
+      sql = ["SELECT ROUND(AVG(temp),1) AS avg FROM (#{historical24_query}) AS forecast", @location.id]
+    when 'by_time'
+      input_date = params[:timestamp].to_i
+      up_limit = input_date + 1800
+      down_limit = input_date - 1800
+      sql = [
+        'SELECT date, temp FROM forecasts WHERE location_id = ? AND date BETWEEN ? AND ? ORDER BY date DESC LIMIT 1',
+        @location.id, down_limit, up_limit
+      ]
+    end
 
-      end
-      
-    ActiveRecord::Base.connection.execute(sql)
+    Forecast.find_by_sql(sql)
   end
 
- 
   private
 
-  
+  def temp_check(temp)
+    if temp.blank?
+      raise(EmptyTempData,
+            'No data! You have to update data first. Try  "WeatherData.load_data(city)" in console ')
+    end
+
+    render json: temp.as_json(except: :id)
+  end
+
   def set_location
     @location = Location.find params[:id]
   end

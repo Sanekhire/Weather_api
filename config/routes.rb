@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root 'locations#health'
+  root 'forecasts#health'
 
-  get '/locations/:id/weather/current', to: 'forecasts#current'
+  get '/locations/:id/weather/current', to: 'forecasts#current_temp'
 
   get '/locations/:id/weather/historical', to: 'forecasts#historical'
 
@@ -15,9 +15,7 @@ Rails.application.routes.draw do
 
   get '/locations/:id/weather/by_time', to: 'forecasts#by_time'
 
-  get '/health', to: 'locations#health'
-
-  get '/locations/:id/weather/update_forecast', to: 'forecasts#update_forecast'
+  get '/health', to: 'forecasts#health'
 
   get '/locations/update_location_key', to: 'locations#update_location_key'
 

@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_06_061218) do
+ActiveRecord::Schema.define(version: 2022_07_25_042324) do
 
   create_table "forecasts", force: :cascade do |t|
-    t.datetime "date"
+    t.integer "date"
     t.float "temp"
     t.integer "location_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2022_06_06_061218) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "location_key"
+    t.index ["city_name"], name: "index_locations_on_city_name", unique: true
   end
 
   add_foreign_key "forecasts", "locations"

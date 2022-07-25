@@ -4,12 +4,13 @@
 
 ## Запуск
 
-Для запуска необходимо скачать репозиторий  и установить все необходимые гемы.
+Для запуска необходимо скачать репозиторий и установить все необходимые гемы.
 В корне приложения открыть терминал и выполнить команду.
 
 ```
 bundle install
 ```
+
 Далее запустить миграции:
 
 ```
@@ -37,9 +38,14 @@ curl http://localhost:3000/locations/update_city_name
 curl http://localhost:3000/locations/update_location_key
 ```
 
-Заполняем базу данных информацией о погоде за последние 24 часа.
+Заполняем базу данных информацией о погоде за последние 24 часа. Для этого запускаем консоль Rails и выполняем команду по нужному городу:
+
 ```
-curl http://localhost:3000/locations/:id/weather/update_forecast
+rails console
+```
+
+```
+WeatherData.load_data('Mariupol')
 ```
 
 Для этого необходимо указать "id:" требуемого города.
@@ -53,7 +59,7 @@ curl http://localhost:3000/locations/:id/weather/update_forecast
 6. Орел
 7. Донецк
 
-##  Для отображения используется несколько эндпоинтов
+## Для отображения используется несколько эндпоинтов
 
 - Текущая температура по Цельсию (берется напрямую из Accuweather API)
 
@@ -61,17 +67,19 @@ curl http://localhost:3000/locations/:id/weather/update_forecast
 curl http://localhost:3000/locations/:id/weather/current
 ```
 
-- Температура за последние 24 часа (берется из БД как и последующие. Для обновления необходимо обновлять базу, 
-пример выше "update_forecast") 
+- Температура за последние 24 часа (берется из БД как и последующие. Для обновления необходимо обновлять базу,
+  пример выше "update_forecast")
 
 ```
 curl http://localhost:3000/locations/:id/weather/historical
 ```
+
 - Максимальная температура за послдение 24 часа
 
 ```
 curl http://localhost:3000/locations/:id/weather/historical/max
 ```
+
 - Минимальная температура за последние 24 часа
 
 ```
@@ -90,7 +98,7 @@ curl http://localhost:3000/locations/:id/weather/historical/avg
 curl http://localhost:3000/locations/:id/weather/by_time?timestamp=
 ```
 
- - Статус Бэкенда
+- Статус Бэкенда
 
 ```
 curl http://localhost:3000/health
@@ -98,7 +106,5 @@ curl http://localhost:3000/health
 
 ## Дополнительная информация
 
-Для корректной работы нужен API key, который можно получить перейдя по [ссылке]( https://developer.accuweather.com/) и пройти несколько простых шагов.
-Ключ необходимо поместить в "credentials.yml.enc". 
-
-
+Для корректной работы нужен API key, который можно получить перейдя по [ссылке](https://developer.accuweather.com/) и пройти несколько простых шагов.
+Ключ необходимо поместить в "credentials.yml.enc".

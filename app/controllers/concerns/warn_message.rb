@@ -13,7 +13,7 @@ module WarnMessage
       render file: 'public/404.html', status: :not_found, layout: false
     end
 
-    class EmptyTempData < StandardError
+    class EmptyDataError < StandardError
     end
   end
 end

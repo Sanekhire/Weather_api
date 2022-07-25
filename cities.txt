@@ -5,3 +5,5 @@ Taganrog
 Rostov-Na-Donu
 Orel
 Donetsk
+Berdyansk
+Berlin

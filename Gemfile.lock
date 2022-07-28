@@ -80,6 +80,7 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
+    date (3.2.2)
     diff-lcs (1.5.0)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
@@ -124,6 +125,10 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
+    open-uri (0.2.0)
+      stringio
+      time
+      uri
     parallel (1.22.1)
     parser (3.1.2.0)
       ast (~> 2.4.1)
@@ -233,8 +238,11 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.4.2)
+    stringio (3.0.2)
     thor (1.2.1)
     tilt (2.0.10)
+    time (0.2.0)
+      date
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -244,6 +252,7 @@ GEM
       unf_ext
     unf_ext (0.0.8.2)
     unicode-display_width (2.1.0)
+    uri (0.11.0)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -277,6 +286,8 @@ DEPENDENCIES
   jbuilder (~> 2.7)
   json (~> 2.6)
   listen (~> 3.3)
+  nokogiri (~> 1.13)
+  open-uri (~> 0.2.0)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.6)

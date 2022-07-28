@@ -31,7 +31,12 @@ class ForecastsController < ApplicationController
 
   def by_time
     @temp_by_time = query_with_choice('by_time').as_json(except: :id)
-    @temp_by_time.blank? ? (raise ActiveRecord::RecordNotFound) : (render json: @temp_by_time)
+    if @temp_by_time.blank?
+      (render file: 'public/404.html', status: :not_found,
+              layout: false)
+    else
+      (render json: @temp_by_time)
+    end
   end
 
   def health
@@ -41,12 +46,11 @@ class ForecastsController < ApplicationController
   private
 
   def set_location
-    @location = Location.find_by(city_name: params[:city_name])
-    if @location.nil?
-      raise EmptyDataError, 'Empty data! Check the city name. It must be like: Mariupol. ' \
-                            'Check if there is a location on main page'
+    @location = Location.find_by(city_name: params[:city_name].capitalize)
+    begin
+      raise EmptyDataError if @location.nil?
+    rescue StandardError => e
+      render json: e.message.to_json
     end
-  rescue StandardError => e
-    render json: e.message.to_json
   end
 end

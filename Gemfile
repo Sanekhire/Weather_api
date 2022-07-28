@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'http', '~> 5.0'
 gem 'json', '~> 2.6'
+gem 'nokogiri', '~> 1.13'
+gem 'open-uri', '~> 0.2.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

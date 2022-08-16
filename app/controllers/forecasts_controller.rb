@@ -46,7 +46,7 @@ class ForecastsController < ApplicationController
   private
 
   def set_location
-    @location = Location.find_by(city_name: params[:city_name].capitalize)
+    @location = Location.find_by(city_name: params[:city_name].titleize)
     begin
       raise EmptyDataError if @location.nil?
     rescue StandardError => e

@@ -17,7 +17,4 @@ Rails.application.routes.draw do
 
   get '/health', to: 'forecasts#health'
 
-  get '/locations/update_location_key', to: 'locations#update_location_key'
-
-  get '/locations/update_city_name', to: 'locations#update_city_name'
 end

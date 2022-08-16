@@ -16,14 +16,13 @@ class LocationKey
     client = new(Rails.application.credentials.weather_api_key)
     cities.each do |city|
       result = client.access_to_site(city)
-        begin
-          raise EmptyDataError if result.blank?
-        rescue EmptyDataError => e
-          Rails.logger.debug e.message
-        else
-          city.update(location_key: result[0]['Key'])
-        end
+      begin
+        raise EmptyDataError if result.blank?
+      rescue EmptyDataError => e
+        Rails.logger.debug e.message
+      else
+        city.update(location_key: result[0]['Key'])
+      end
     end
   end
-
 end

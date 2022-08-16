@@ -16,5 +16,4 @@ Rails.application.routes.draw do
   get '/locations/:city_name/weather/by_time', to: 'forecasts#by_time'
 
   get '/health', to: 'forecasts#health'
-
 end

@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
 class CityName
-  def self.load_data(source = 'default')
-    source == 'site' ? (cities = new.send(:values_from_site)) : (cities = new.send(:values_default))
+  def self.load_data(source = '')
+    source == 'site' ? (cities = new.send(:values_from_site)) : 
+    (cities = ['Mariupol', 'Moscow', 'Nizhniy Novgorod', 'Taganrog', 'Rostov-Na-Donu', 'Orel', 'Donetsk'])
 
     cities.each { |city| Location.create_or_find_by(city_name: city) }
   end
@@ -16,7 +17,5 @@ class CityName
     cities.flatten!
   end
 
-  def values_default
-    cities = ['Mariupol', 'Moscow', 'Nizhniy Novgorod', 'Taganrog', 'Rostov-Na-Donu', 'Orel', 'Donetsk']
-  end
+  
 end

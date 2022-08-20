@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :location do
-    sequence(:city_name) { |n| "city#{n}" }
+    sequence(:city_name) { |n| "City#{n}" }
   end
 end

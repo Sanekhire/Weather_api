@@ -3,8 +3,9 @@
 require 'rails_helper'
 
 RSpec.describe LocationKey do
-  subject(:instance) { described_class.new(Rails.application.credentials.weather_api_key) }
   subject(:load_to_city) { described_class.load_to_city }
+
+  let(:instance) { described_class.new(Rails.application.credentials.weather_api_key) }
   let(:loc) { create(:location, city_name: 'Mariupol') }
 
   describe '#access_to_site' do
@@ -17,7 +18,6 @@ RSpec.describe LocationKey do
         expect(access_to_site[0].keys).to include('Key')
       end
     end
-
   end
 
   describe '#load_to_city' do
@@ -37,6 +37,4 @@ RSpec.describe LocationKey do
       end
     end
   end
-
-  
 end

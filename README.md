@@ -17,6 +17,12 @@ bundle install
 rails db:migrate
 ```
 
+Запускаем проверку с помощью тестов:
+
+```
+bundle exec rspec
+```
+
 Теперь необходимо подготовить данные. Запускааем консоль rails:
 
 ```
@@ -31,8 +37,7 @@ rails console
    CityName.load_data(source)
    ```
 
-   - Для загрузки перечня по умолчанию не указыать атрибут и будут загружены следующие города:
-     ('Mariupol', 'Moscow', 'Nizhniy Novgorod', 'Taganrog', 'Rostov-Na-Donu', 'Orel', 'Donetsk')
+   - Для загрузки перечня по умолчанию
 
    ```
    CityName.load_data
@@ -50,7 +55,7 @@ LocationKey.load_to_city
 WeatherData.load_data(city)
 ```
 
-\*Где `city` строка с наименованием города.
+\*Где `city` строка с наименованием города из загруженных данных в п.1
 
 Выходим из консоли Rails.
 

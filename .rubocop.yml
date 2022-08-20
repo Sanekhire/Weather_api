@@ -10,3 +10,12 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false
+
+Metrics/BlockLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false

@@ -3,11 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe WeatherData do
-
   describe '#get_forecast' do
     subject(:instance) { described_class.new(Rails.application.credentials.weather_api_key) }
-    let(:loc) { create(:location, city_name: 'Mariupol', location_key: '323037')}
-    let(:get_forecast) { instance.get_forecast('Mariupol')}
+
+    let(:loc) { create(:location, city_name: 'Mariupol', location_key: '323037') }
+    let(:get_forecast) { instance.get_forecast('Mariupol') }
 
     context 'when gets responce with weather data' do
       it 'has return correct attributes', :vcr do
@@ -30,7 +30,7 @@ RSpec.describe WeatherData do
       allow(access_test).to receive_message_chain(:city_loc, :id) { 1 }
     end
 
-    context 'test with correct data from weather api' do
+    context 'with correct data from weather api' do
       it 'creates a new record in DB with correct attributes' do
         loc
         load_data
@@ -39,14 +39,13 @@ RSpec.describe WeatherData do
       end
     end
 
-      context 'when client returns correct data with the same datetime' do
-        before { create(:forecast, date: 1660635817) }
-      
-        it 'does not duplicate records' do
-          loc
-          expect { load_data }.not_to change(Forecast, :count).from(1)
-        end
+    context 'when client returns correct data with the same datetime' do
+      before { create(:forecast, date: 1660635817) }
+
+      it 'does not duplicate records' do
+        loc
+        expect { load_data }.not_to change(Forecast, :count).from(1)
       end
+    end
   end
-  
 end

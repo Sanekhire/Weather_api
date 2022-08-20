@@ -2,8 +2,11 @@
 
 class CityName
   def self.load_data(source = '')
-    source == 'site' ? (cities = new.send(:values_from_site)) : 
-    (cities = ['Mariupol', 'Moscow', 'Nizhniy Novgorod', 'Taganrog', 'Rostov-Na-Donu', 'Orel', 'Donetsk'])
+    if source == 'site'
+      (cities = new.send(:values_from_site))
+    else
+      (cities = ['Mariupol', 'Moscow', 'Nizhniy Novgorod', 'Taganrog', 'Rostov-Na-Donu', 'Orel', 'Donetsk'])
+    end
 
     cities.each { |city| Location.create_or_find_by(city_name: city) }
   end
@@ -16,6 +19,4 @@ class CityName
     cities = full_text.scan(/City Name = .(.*?),/)
     cities.flatten!
   end
-
-  
 end

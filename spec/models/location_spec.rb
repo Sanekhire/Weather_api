@@ -9,7 +9,7 @@ RSpec.describe Location, type: :model do
     expect(loc).to be_valid
   end
 
-  context 'not valid' do
+  context 'when not valid' do
     it 'has not to be valid by length' do
       loc.city_name = 'c'
       expect(loc).not_to be_valid

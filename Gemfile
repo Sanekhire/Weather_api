@@ -29,6 +29,8 @@ gem 'json', '~> 2.6'
 gem 'nokogiri', '~> 1.13'
 gem 'open-uri', '~> 0.2.0'
 gem 'pry-rails'
+gem 'whenever', require: false
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

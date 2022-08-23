@@ -12,9 +12,8 @@ class LocationKey
   end
 
   def self.load_to_city
-    cities = Location.where(location_key: nil)
     client = new(Rails.application.credentials.weather_api_key)
-    cities.each do |city|
+    Location.where(location_key: nil).each do |city|
       result = client.access_to_site(city)
       begin
         raise EmptyDataError if result.blank?

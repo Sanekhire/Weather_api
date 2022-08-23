@@ -8,7 +8,7 @@ class CityName
       (cities = ['Mariupol', 'Moscow', 'Nizhniy Novgorod', 'Taganrog', 'Rostov-Na-Donu', 'Orel', 'Donetsk'])
     end
 
-    cities.each { |city| Location.create_or_find_by(city_name: city) }
+    cities.each { |city| Location.create(city_name: city) }
   end
 
   private

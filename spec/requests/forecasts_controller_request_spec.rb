@@ -53,18 +53,18 @@ RSpec.describe ForecastsController, type: :request do
 
   describe 'GET /locations/city1/weather/by_time' do
     it 'returns temperature for time closest to input' do
-      get '/locations/city1/weather/by_time?timestamp=1660735548'
+      get '/locations/city1/weather/by_time?input=1660735548'
       expect(response).to have_http_status(:ok)
       expect(JSON.parse(response.body)).to eq([{ 'date' => 1660733934, 'temp' => 18.0 }])
     end
 
     it 'returns 404 when input is empty' do
-      get '/locations/city1/weather/by_time?timestamp='
+      get '/locations/city1/weather/by_time?input='
       expect(response).to have_http_status(:not_found)
     end
 
     it 'returns 404 when input is over the records' do
-      get '/locations/city1/weather/by_time?timestamp=1660741048'
+      get '/locations/city1/weather/by_time?input=1660741048'
       expect(response).to have_http_status(:not_found)
     end
   end

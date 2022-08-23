@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module ForecastPrepeareResult
+module ForecastPrepareResult
   extend ActiveSupport::Concern
 
   included do
@@ -19,7 +19,7 @@ module ForecastPrepeareResult
       when 'avg'
         sql = ["SELECT ROUND(AVG(temp),1) AS avg FROM (#{historical24_query}) AS forecast", @location.id]
       when 'by_time'
-        input_date = params[:timestamp].to_i
+        input_date = params[:input].to_i
         up_limit = input_date + 1800
         down_limit = input_date - 1800
         sql = [
@@ -34,7 +34,7 @@ module ForecastPrepeareResult
     def temp_check(temp)
       if temp.blank?
         raise EmptyDataError, 'Empty data! You have to update data first. ' \
-                              "Try WeatherData.load_data(#{params[:city_name]}) in console "
+                              "Try rake prepare_data in console "
       end
     rescue StandardError => e
       render json: e.message.to_json

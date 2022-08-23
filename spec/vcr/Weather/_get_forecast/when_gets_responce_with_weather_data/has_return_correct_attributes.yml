@@ -1,0 +1,87 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://dataservice.accuweather.com/currentconditions/v1/323037/historical/24?apikey=secret_api_key
+    body:
+      encoding: UTF-8
+      string: ''
+    headers:
+      Connection:
+      - close
+      Host:
+      - dataservice.accuweather.com
+      User-Agent:
+      - http.rb/5.1.0
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 22 Aug 2022 07:14:52 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '11985'
+      Connection:
+      - close
+      Server:
+      - Microsoft-IIS/10.0
+      Ratelimit-Limit:
+      - '50'
+      Ratelimit-Remaining:
+      - '31'
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Allow-Methods:
+      - GET, PUT, POST, DELETE
+      Access-Control-Allow-Headers:
+      - origin, x-requested-with, accept
+      Access-Control-Max-Age:
+      - '3628800'
+      Cache-Control:
+      - public, max-age=546
+      Expires:
+      - Mon, 22 Aug 2022 07:23:58 GMT
+      Akamai-Grn:
+      - 0.c968dc17.1661152492.70e47291
+      Host:
+      - api.accuweather.com
+      User-Agent:
+      - http.rb/5.1.0
+      X-Forwarded-For:
+      - 89.109.44.44
+      X-Forwarded-Port:
+      - '80'
+      X-Forwarded-Proto:
+      - http
+    body:
+      encoding: UTF-8
+      string: '[{"LocalObservationDateTime":"2022-08-22T09:57:00+03:00","EpochTime":1661151420,"WeatherText":"Mostly
+        sunny","WeatherIcon":2,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":24.7,"Unit":"C","UnitType":17},"Imperial":{"Value":76.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-22T08:57:00+03:00","EpochTime":1661147820,"WeatherText":"Mostly
+        sunny","WeatherIcon":2,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":24.2,"Unit":"C","UnitType":17},"Imperial":{"Value":76.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-22T07:57:00+03:00","EpochTime":1661144220,"WeatherText":"Mostly
+        sunny","WeatherIcon":2,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":23.4,"Unit":"C","UnitType":17},"Imperial":{"Value":74.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-22T06:57:00+03:00","EpochTime":1661140620,"WeatherText":"Mostly
+        sunny","WeatherIcon":2,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":22.9,"Unit":"C","UnitType":17},"Imperial":{"Value":73.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-22T05:57:00+03:00","EpochTime":1661137020,"WeatherText":"Mostly
+        sunny","WeatherIcon":2,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":22.8,"Unit":"C","UnitType":17},"Imperial":{"Value":73.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-22T04:58:00+03:00","EpochTime":1661133480,"WeatherText":"Mostly
+        clear","WeatherIcon":34,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":false,"Temperature":{"Metric":{"Value":22.7,"Unit":"C","UnitType":17},"Imperial":{"Value":73.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-22T03:57:00+03:00","EpochTime":1661129820,"WeatherText":"Mostly
+        clear","WeatherIcon":34,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":false,"Temperature":{"Metric":{"Value":24.0,"Unit":"C","UnitType":17},"Imperial":{"Value":75.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-22T02:58:00+03:00","EpochTime":1661126280,"WeatherText":"Mostly
+        clear","WeatherIcon":34,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":false,"Temperature":{"Metric":{"Value":24.7,"Unit":"C","UnitType":17},"Imperial":{"Value":76.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-22T01:57:00+03:00","EpochTime":1661122620,"WeatherText":"Mostly
+        clear","WeatherIcon":34,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":false,"Temperature":{"Metric":{"Value":25.1,"Unit":"C","UnitType":17},"Imperial":{"Value":77.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-22T00:57:00+03:00","EpochTime":1661119020,"WeatherText":"Mostly
+        clear","WeatherIcon":34,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":false,"Temperature":{"Metric":{"Value":25.5,"Unit":"C","UnitType":17},"Imperial":{"Value":78.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-22T00:03:00+03:00","EpochTime":1661115780,"WeatherText":"Mostly
+        clear","WeatherIcon":34,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":false,"Temperature":{"Metric":{"Value":25.5,"Unit":"C","UnitType":17},"Imperial":{"Value":78.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T22:57:00+03:00","EpochTime":1661111820,"WeatherText":"Partly
+        cloudy","WeatherIcon":35,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":false,"Temperature":{"Metric":{"Value":26.3,"Unit":"C","UnitType":17},"Imperial":{"Value":79.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T21:57:00+03:00","EpochTime":1661108220,"WeatherText":"Mostly
+        clear","WeatherIcon":34,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":false,"Temperature":{"Metric":{"Value":26.8,"Unit":"C","UnitType":17},"Imperial":{"Value":80.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T20:57:00+03:00","EpochTime":1661104620,"WeatherText":"Mostly
+        clear","WeatherIcon":34,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":false,"Temperature":{"Metric":{"Value":27.3,"Unit":"C","UnitType":17},"Imperial":{"Value":81.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T19:57:00+03:00","EpochTime":1661101020,"WeatherText":"Partly
+        cloudy","WeatherIcon":35,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":false,"Temperature":{"Metric":{"Value":27.9,"Unit":"C","UnitType":17},"Imperial":{"Value":82.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T18:57:00+03:00","EpochTime":1661097420,"WeatherText":"Partly
+        sunny","WeatherIcon":3,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":28.3,"Unit":"C","UnitType":17},"Imperial":{"Value":83.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T17:58:00+03:00","EpochTime":1661093880,"WeatherText":"Partly
+        sunny","WeatherIcon":3,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":28.6,"Unit":"C","UnitType":17},"Imperial":{"Value":83.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T16:57:00+03:00","EpochTime":1661090220,"WeatherText":"Clouds
+        and sun","WeatherIcon":4,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":28.4,"Unit":"C","UnitType":17},"Imperial":{"Value":83.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T15:57:00+03:00","EpochTime":1661086620,"WeatherText":"Clouds
+        and sun","WeatherIcon":4,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":28.3,"Unit":"C","UnitType":17},"Imperial":{"Value":83.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T14:57:00+03:00","EpochTime":1661083020,"WeatherText":"Clouds
+        and sun","WeatherIcon":4,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":26.8,"Unit":"C","UnitType":17},"Imperial":{"Value":80.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T13:57:00+03:00","EpochTime":1661079420,"WeatherText":"Partly
+        sunny","WeatherIcon":3,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":27.2,"Unit":"C","UnitType":17},"Imperial":{"Value":81.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T12:57:00+03:00","EpochTime":1661075820,"WeatherText":"Partly
+        sunny","WeatherIcon":3,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":26.6,"Unit":"C","UnitType":17},"Imperial":{"Value":80.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T11:57:00+03:00","EpochTime":1661072220,"WeatherText":"Clouds
+        and sun","WeatherIcon":4,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":26.0,"Unit":"C","UnitType":17},"Imperial":{"Value":79.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"},{"LocalObservationDateTime":"2022-08-21T10:57:00+03:00","EpochTime":1661068620,"WeatherText":"Clouds
+        and sun","WeatherIcon":4,"HasPrecipitation":false,"PrecipitationType":null,"IsDayTime":true,"Temperature":{"Metric":{"Value":25.2,"Unit":"C","UnitType":17},"Imperial":{"Value":77.0,"Unit":"F","UnitType":18}},"MobileLink":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us","Link":"http://www.accuweather.com/en/ua/mariupol/323037/current-weather/323037?lang=en-us"}]'
+  recorded_at: Mon, 22 Aug 2022 07:14:52 GMT
+recorded_with: VCR 6.1.0

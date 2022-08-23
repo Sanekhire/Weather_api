@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ForecastsController < ApplicationController
-  include ForecastPrepeareResult
+  include ForecastPrepareResult
   before_action :set_location, except: %i[health temp_check]
 
   def current_temp

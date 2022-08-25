@@ -17,7 +17,9 @@ class Weather
     access = new(Rails.application.credentials.weather_api_key)
     Location.all.each do |city|
       access.get_forecast(city).each do |data|
-      city.forecasts.find_or_create_by(date: (data['EpochTime'])) { |f| f.temp = data.dig('Temperature', 'Metric', 'Value') }
+        city.forecasts.find_or_create_by(date: (data['EpochTime'])) do |f|
+          f.temp = data.dig('Temperature', 'Metric', 'Value')
+        end
       end
     end
   end

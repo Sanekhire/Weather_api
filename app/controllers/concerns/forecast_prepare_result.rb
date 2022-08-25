@@ -34,7 +34,7 @@ module ForecastPrepareResult
     def temp_check(temp)
       if temp.blank?
         raise EmptyDataError, 'Empty data! You have to update data first. ' \
-                              "Try rake prepare_data in console "
+                              'Try rake prepare_data in console '
       end
     rescue StandardError => e
       render json: e.message.to_json

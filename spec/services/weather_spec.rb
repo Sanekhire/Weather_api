@@ -3,15 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe Weather do
-
   describe '#get_forecast' do
-
     subject(:instance) { described_class.new(Rails.application.credentials.weather_api_key) }
+
     let(:city) { Location.first }
     let(:forecast) { instance.get_forecast(city) }
 
     before { create(:location, city_name: 'Mariupol', location_key: '323037') }
-    
 
     context 'when gets responce with weather data' do
       it 'has return correct attributes', :vcr do
@@ -41,8 +39,8 @@ RSpec.describe Weather do
     end
 
     context 'when client returns correct data with the same datetime' do
-      before { create(:forecast, date: 1660635817, temp: 8.0, location_id: 1) } 
-      
+      before { create(:forecast, date: 1660635817, temp: 8.0, location_id: 1) }
+
       it 'does not duplicate records' do
         expect { load_data }.not_to change(Forecast, :count).from(1)
       end

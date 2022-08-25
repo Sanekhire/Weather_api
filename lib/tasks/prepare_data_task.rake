@@ -15,11 +15,5 @@ namespace :tables_data do
 
   end
 
-  desc 'Update table forecasts with new data if exists'
-  task :update_forecasts => :environment do
-
-    Weather.load_data
-
-  end
-
+ 
 end
